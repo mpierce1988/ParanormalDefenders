@@ -2284,6 +2284,7 @@ GameObject:
   - component: {fileID: 1386113219}
   - component: {fileID: 1386113221}
   - component: {fileID: 1386113220}
+  - component: {fileID: 1386113222}
   m_Layer: 5
   m_Name: Player Info Panel
   m_TagString: Untagged
@@ -2367,6 +2368,26 @@ MonoBehaviour:
   m_ChildScaleWidth: 0
   m_ChildScaleHeight: 0
   m_ReverseArrangement: 0
+--- !u!114 &1386113222
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1386113216}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 81acd0ba7a4b2498ea9056748b5b54ce, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _currentHealth: {fileID: 11400000, guid: a398e02064174487a80f486550d1fea5, type: 2}
+  _maxHealth: {fileID: 11400000, guid: 0640c8179fff04e6e912b5527d945953, type: 2}
+  _coins: {fileID: 11400000, guid: 3acec032156c44b28b3e173c9f15a958, type: 2}
+  _currentXP: {fileID: 11400000, guid: d9c335ff4b7da4f93a889bade6b49324, type: 2}
+  _nextXPThreshold: {fileID: 11400000, guid: 34f24088ce57449af9c9695fe0b5e732, type: 2}
+  _healthSlider: {fileID: 637890820}
+  _xpSlider: {fileID: 1250328413}
+  _coinsText: {fileID: 259227907}
 --- !u!1 &1400126037
 GameObject:
   m_ObjectHideFlags: 0
