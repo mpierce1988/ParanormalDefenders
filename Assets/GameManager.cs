@@ -80,5 +80,7 @@ public class GameManager : MonoBehaviour
         {
             _gameManagerState.GameManagerState.Enter();
         }
+
+        _gameManagerState.OnGameManagerStateChange?.Invoke(_gameManagerState.GameManagerState);
     }
 }
