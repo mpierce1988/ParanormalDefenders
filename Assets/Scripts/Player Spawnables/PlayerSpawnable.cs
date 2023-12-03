@@ -61,8 +61,9 @@ public class PlayerSpawnable : MonoBehaviour
         DestroySpawnable();
     }
 
-    protected virtual void DestroySpawnable()
+    public virtual void DestroySpawnable()
     {
+        Debug.Log("Destroying spawnable");
         Destroy(this.gameObject);
     }
 }

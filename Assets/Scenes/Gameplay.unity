@@ -1021,7 +1021,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 534776659}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Boundary
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1508,7 +1508,7 @@ GameObject:
   m_Component:
   - component: {fileID: 671602586}
   - component: {fileID: 671602587}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Bottom Boundary
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -29105,7 +29105,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1379235774}
   - component: {fileID: 1379235775}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Top Boundary
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -30005,7 +30005,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1804715652}
   - component: {fileID: 1804715653}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Right Boundary
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -30345,7 +30345,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1958013497}
   - component: {fileID: 1958013498}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Left Boundary
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -30714,10 +30714,6 @@ PrefabInstance:
       propertyPath: m_Name
       value: PlayerInput
       objectReference: {fileID: 0}
-    - target: {fileID: 5323546844038764190, guid: 03060d080caf0416abe07d862e8060d1, type: 3}
-      propertyPath: _weaponData
-      value: 
-      objectReference: {fileID: 11400000, guid: d2928112d07414d73a5dc9c15d8b4480, type: 2}
     - target: {fileID: 7601572513219023314, guid: 03060d080caf0416abe07d862e8060d1, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0

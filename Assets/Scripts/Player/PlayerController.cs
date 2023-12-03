@@ -11,6 +11,9 @@ public class PlayerController : MonoBehaviour
     [SerializeField]
     private BoolVariable _isDashing;
 
+    [SerializeField]
+    private Vector2Variable _playerPosition;
+
     // private IPlayerInput _playerInput;
     private IMovement _playerMovement;
     private Rigidbody2D _rigidbody2D;
@@ -34,6 +37,10 @@ public class PlayerController : MonoBehaviour
         // Debug.Log("Current Input: " + _movementInput.Value);
         _rigidbody2D.MovePosition(_playerMovement.GetNextPosition(
             _rigidbody2D.position, _movementInput.Value, Time.fixedDeltaTime));
+
+        // set player position variable
+        _playerPosition.BaseValue = _rigidbody2D.position;
+        _playerPosition.Raise();
     }
 
 }

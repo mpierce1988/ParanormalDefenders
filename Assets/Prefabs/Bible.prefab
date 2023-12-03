@@ -11,9 +11,9 @@ GameObject:
   - component: {fileID: 2949651624692483556}
   - component: {fileID: 5772915322330189415}
   - component: {fileID: 3128411709039771349}
-  - component: {fileID: 1277430464331376405}
+  - component: {fileID: 566276110504777991}
   m_Layer: 7
-  m_Name: Projectile
+  m_Name: Bible
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -97,7 +97,7 @@ Rigidbody2D:
   m_SleepingMode: 1
   m_CollisionDetection: 0
   m_Constraints: 0
---- !u!114 &1277430464331376405
+--- !u!114 &566276110504777991
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -106,12 +106,14 @@ MonoBehaviour:
   m_GameObject: {fileID: 1959364997514204214}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 6befbc8397ae746b182e2bd2777785ba, type: 3}
+  m_Script: {fileID: 11500000, guid: 9a651662183bc42cf9a0a702c4906ad6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _speed: 15
+  _speed: 90
   _damage: 1
-  _destroyAfterSeconds: 3
+  _destroyAfterSeconds: -1
+  _playerPosition: {fileID: 11400000, guid: 102cca355a87347acaf8d443f1f75282, type: 2}
+  _distanceFromPlayer: 3
 --- !u!1 &4240436498037555903
 GameObject:
   m_ObjectHideFlags: 0
@@ -171,7 +173,7 @@ Transform:
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 0.5, y: 0.5, z: 1}
+  m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 6308417641034010369}
@@ -217,8 +219,8 @@ SpriteRenderer:
   m_SortingLayerID: -1445960429
   m_SortingLayer: 2
   m_SortingOrder: 0
-  m_Sprite: {fileID: -2413806693520163455, guid: a86470a33a6bf42c4b3595704624658b, type: 3}
-  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_Sprite: {fileID: 21300000, guid: 00b8ce4a201871b498992f536279acf7, type: 3}
+  m_Color: {r: 1, g: 0, b: 0, a: 1}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0

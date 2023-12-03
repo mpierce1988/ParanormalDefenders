@@ -22,7 +22,28 @@ public class Weapon : MonoBehaviour
         StartFiring();
     }
 
-    IEnumerator FireWeapon()
+    IEnumerator FireWeaponFixedTime()
+    {
+        float timeBetweenShots = _weaponData.CurrentWeaponFireTime / _weaponData.CurrentNumProjectiles;
+
+        float timeProgress = 0f;
+
+        while (timeProgress < _weaponData.CurrentWeaponFireTime)
+        {
+            _weaponData.SpawnProjectiles(SpawnProjectile, this.transform, _projectilesParent);
+
+            yield return new WaitForSeconds(timeBetweenShots);
+
+            timeProgress += timeBetweenShots;
+        }
+
+        if (_isFiring)
+        {
+            StartCoroutine(Cooldown());
+        }
+    }
+
+    IEnumerator FireWeaponFixedAmount()
     {
         int totalShotsFired = 0;
 
@@ -53,16 +74,19 @@ public class Weapon : MonoBehaviour
         return projectile;
     }
 
-    private Vector2 GetProjectileStartPosition(Vector2 origin, Vector2 originOffset)
-    {
-        return new Vector2(origin.x + originOffset.x, origin.y + originOffset.y);
-    }
-
     public void StartFiring()
     {
         Debug.Log("Weapon start firing...");
         _isFiring = true;
-        StartCoroutine(FireWeapon());
+        if (_weaponData.WeaponType == WeaponType.FixedAmount)
+        {
+            StartCoroutine(FireWeaponFixedAmount());
+        }
+        else if (_weaponData.WeaponType == WeaponType.FixedTime)
+        {
+            StartCoroutine(FireWeaponFixedTime());
+        }
+
     }
 
     public void StopFiring()
@@ -72,25 +96,28 @@ public class Weapon : MonoBehaviour
 
     IEnumerator Cooldown()
     {
+        if (_weaponData.WeaponType == WeaponType.FixedTime)
+        {
+            // destroy any projectiles already created
+            foreach (var spawnable in _projectilesParent.GetComponentsInChildren<PlayerSpawnable>())
+            {
+                spawnable.DestroySpawnable();
+            }
+        }
         yield return new WaitForSeconds(_weaponData.CurrentCooldown);
 
         // Fire Weapon
         if (_isFiring)
         {
-            StartCoroutine(FireWeapon());
+            if (_weaponData.WeaponType == WeaponType.FixedAmount)
+            {
+                StartCoroutine(FireWeaponFixedAmount());
+            }
+            else if (_weaponData.WeaponType == WeaponType.FixedTime)
+            {
+                StartCoroutine(FireWeaponFixedTime());
+            }
+
         }
-    }
-
-    GameObject GetProjectile()
-    {
-        GameObject projectile = Instantiate(_weaponData.CurrentProjectilePrefab);
-        projectile.transform.parent = _projectilesParent.transform;
-        return projectile;
-    }
-
-    Vector2 GetRandomOrigin()
-    {
-        int randomIndex = Random.Range(0, _weaponData.ProjectileOrigins.Count - 1);
-        return _weaponData.ProjectileOrigins[randomIndex];
     }
 }
