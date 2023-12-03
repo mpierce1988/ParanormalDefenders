@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -11,7 +12,11 @@ public class Projectile : MonoBehaviour
     [SerializeField]
     private int _damage;
 
+    [SerializeField]
+    private float _destroyAfterSeconds = -1f;
+
     private Rigidbody2D _rigidbody2D;
+    private Vector2? _launchAngle = null;
 
     private void Awake()
     {
@@ -20,8 +25,24 @@ public class Projectile : MonoBehaviour
 
     private void OnEnable()
     {
-        Debug.Log("Launching projectile...");
-        _rigidbody2D.AddForce(transform.right * _speed, ForceMode2D.Impulse);
+
+        _launchAngle = transform.right;
+
+        _rigidbody2D.velocity = Vector2.zero;
+        Debug.Log("Launching projectile at angle: " + _launchAngle + ", localRotation: " + transform.rotation);
+        _rigidbody2D.AddForce(_launchAngle.Value * _speed, ForceMode2D.Impulse);
+
+        if (_destroyAfterSeconds > 0)
+        {
+            StartCoroutine(DestroyAfter(_destroyAfterSeconds));
+        }
+    }
+
+    IEnumerator DestroyAfter(float destroyAfterSeconds)
+    {
+        yield return new WaitForSeconds(destroyAfterSeconds);
+
+        Destroy(this.gameObject);
     }
 
     private void OnDisable()
@@ -37,5 +58,11 @@ public class Projectile : MonoBehaviour
     public void SetSpeed(int speed)
     {
         _speed = speed;
+    }
+
+    public void SetLaunchAngle(Vector2 launchAngle)
+    {
+        Debug.Log("Setting the launch angle to: " + launchAngle);
+        _launchAngle = launchAngle;
     }
 }

@@ -48,10 +48,7 @@ public class Weapon : MonoBehaviour
 
     private GameObject SpawnProjectile(Vector2 position, Quaternion rotation, Transform parentTransform)
     {
-        GameObject projectile = Instantiate(_weaponData.CurrentProjectilePrefab);
-        projectile.transform.position = position;
-        projectile.transform.rotation = rotation;
-        projectile.transform.parent = parentTransform.transform;
+        GameObject projectile = Instantiate(_weaponData.CurrentProjectilePrefab, position, rotation, parentTransform);
         projectile.SetActive(true);
         return projectile;
     }

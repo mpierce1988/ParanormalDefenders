@@ -12,13 +12,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fff8023f3fcd342388cfdec733e7ca1c, type: 3}
   m_Name: New WeaponData
   m_EditorClassIdentifier: 
-  _weaponType: 0
-  _initialNumProjectiles: 0
-  _initialTimeBetweenProjectiles: 0
+  _weaponType: 1
+  _initialNumProjectiles: 5
+  _initialTimeBetweenProjectiles: 0.25
   _initialWeaponFireTime: 0
-  _initialCooldown: 0
-  _initialProjectilePrefab: {fileID: 0}
-  _initialProjectileDamage: 0
+  _initialCooldown: 5
+  _initialProjectilePrefab: {fileID: 1959364997514204214, guid: af0f43c151f934e5ebb9a30c2094afbb, type: 3}
+  _initialProjectileDamage: 1
   _projectileOrigins: []
-  _movementDirection: {fileID: 0}
+  _movementDirection: {fileID: 11400000, guid: d42e0303cabff4300bb69be8d623e7b8, type: 2}
   _spawnDistanceFromOrigin: 1

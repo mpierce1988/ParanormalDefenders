@@ -70,7 +70,7 @@ public class WeaponDataSO : ScriptableObject
         _currentProjectileDamage = _initialProjectileDamage;
     }
 
-    public int SpawnProjectiles(SpawnFunction spawnFunction, Transform spawnerTransform, Transform projectileParentTransform)
+    virtual public int SpawnProjectiles(SpawnFunction spawnFunction, Transform spawnerTransform, Transform projectileParentTransform)
     {
         Vector2 randomOrigin = GetRandomOrigin();
 
