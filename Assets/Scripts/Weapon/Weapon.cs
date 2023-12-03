@@ -12,6 +12,8 @@ public class Weapon : MonoBehaviour
     [SerializeField]
     private Transform _projectilesParent;
 
+    public WeaponDataSO WeaponData => _weaponData;
+
     private bool _isFiring = false;
 
     private void OnEnable()
@@ -19,7 +21,17 @@ public class Weapon : MonoBehaviour
         // Initialize initial WeaponData values
         _weaponData.ResetWeaponData();
         // DEBUG remove later
-        StartFiring();
+        //StartFiring();
+    }
+
+    public void SetWeaponData(WeaponDataSO weaponData)
+    {
+        _weaponData = weaponData;
+    }
+
+    public void SetProjectilesParent(Transform projectilesParent)
+    {
+        _projectilesParent = projectilesParent;
     }
 
     IEnumerator FireWeaponFixedTime()
