@@ -4,6 +4,8 @@ using UnityEngine;
 
 public class Weapon : MonoBehaviour
 {
+    public delegate GameObject SpawnFunction(Vector2 position, Quaternion rotation, Transform parentTransform);
+
     [SerializeField]
     private WeaponDataSO _weaponData;
 
@@ -22,23 +24,17 @@ public class Weapon : MonoBehaviour
 
     IEnumerator FireWeapon()
     {
-        int shotsFired = 0;
+        int totalShotsFired = 0;
 
-        while (shotsFired < _weaponData.CurrentNumProjectiles)
+        while (totalShotsFired < _weaponData.CurrentNumProjectiles)
         {
             if (!_isFiring)
             {
                 // stop firing
                 yield break;
             }
-            // spawn projectile at a random origin
-            GameObject proj = GetProjectile();
-            Vector2 originOffset = GetRandomOrigin();
-            proj.transform.position =
-                new Vector2(transform.position.x + originOffset.x,
-                transform.position.y + originOffset.y);
 
-            shotsFired++;
+            totalShotsFired += _weaponData.SpawnProjectiles(SpawnProjectile, this.transform, _projectilesParent);
 
             yield return new WaitForSeconds(_weaponData.CurrentTimeBetweenProjectiles);
         }
@@ -50,8 +46,24 @@ public class Weapon : MonoBehaviour
         }
     }
 
+    private GameObject SpawnProjectile(Vector2 position, Quaternion rotation, Transform parentTransform)
+    {
+        GameObject projectile = Instantiate(_weaponData.CurrentProjectilePrefab);
+        projectile.transform.position = position;
+        projectile.transform.rotation = rotation;
+        projectile.transform.parent = parentTransform.transform;
+        projectile.SetActive(true);
+        return projectile;
+    }
+
+    private Vector2 GetProjectileStartPosition(Vector2 origin, Vector2 originOffset)
+    {
+        return new Vector2(origin.x + originOffset.x, origin.y + originOffset.y);
+    }
+
     public void StartFiring()
     {
+        Debug.Log("Weapon start firing...");
         _isFiring = true;
         StartCoroutine(FireWeapon());
     }

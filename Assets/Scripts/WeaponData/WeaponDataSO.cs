@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -52,6 +53,8 @@ public class WeaponDataSO : ScriptableObject
     public GameObject CurrentProjectilePrefab => _currentProjectilePrefab;
     public int CurrentProjectileDamage => _currentProjectileDamage;
 
+    public delegate GameObject SpawnFunction(Vector2 position, Quaternion rotation, Transform parentTransform);
+
     private void Awake()
     {
         ResetWeaponData();
@@ -65,5 +68,23 @@ public class WeaponDataSO : ScriptableObject
         _currentCooldown = _initialCooldown;
         _currentProjectilePrefab = _initialProjectilePrefab;
         _currentProjectileDamage = _initialProjectileDamage;
+    }
+
+    public int SpawnProjectiles(SpawnFunction spawnFunction, Transform spawnerTransform, Transform projectileParentTransform)
+    {
+        Vector2 randomOrigin = GetRandomOrigin();
+
+        Vector2 spawnPosition = new Vector2(spawnerTransform.position.x + randomOrigin.x,
+            spawnerTransform.position.y + randomOrigin.y);
+
+        GameObject obj = spawnFunction(spawnPosition, spawnerTransform.rotation, projectileParentTransform.transform);
+
+        return 1;
+    }
+
+    virtual protected Vector2 GetRandomOrigin()
+    {
+        int randomIndex = UnityEngine.Random.Range(0, _projectileOrigins.Count);
+        return _projectileOrigins[randomIndex];
     }
 }
