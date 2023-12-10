@@ -11,9 +11,9 @@ TagManager:
   - 
   - Water
   - UI
-  - 
-  - 
-  - 
+  - Player
+  - Player Projectile
+  - Level Obstacles
   - 
   - 
   - 
@@ -43,6 +43,9 @@ TagManager:
     locked: 0
   - name: Background
     uniqueID: 4143471167
+    locked: 0
+  - name: Bullets
+    uniqueID: 2849006867
     locked: 0
   - name: Player
     uniqueID: 1785944419
