@@ -17,6 +17,8 @@ public class UIPlayerInfo : MonoBehaviour
     private IntVariable _currentXP;
     [SerializeField]
     private IntVariable _nextXPThreshold;
+    [SerializeField]
+    private IntVariable _currentPlayerLevel;
 
     [SerializeField]
     private Slider _healthSlider;
@@ -24,6 +26,8 @@ public class UIPlayerInfo : MonoBehaviour
     private Slider _xpSlider;
     [SerializeField]
     private TextMeshProUGUI _coinsText;
+    [SerializeField]
+    private TextMeshProUGUI _levelText;
 
     private int _previousXPThreshold = 0;
     private int _currentXPThreshold = 0;
@@ -40,6 +44,7 @@ public class UIPlayerInfo : MonoBehaviour
 
         _currentXP.AddListener(UpdateXP);
         _nextXPThreshold.AddListener(UpdateXPThreshold);
+        _currentPlayerLevel.AddListener(UpdateLevel);
 
 
         _coins.AddListener(UpdateCoins);
@@ -47,6 +52,7 @@ public class UIPlayerInfo : MonoBehaviour
         UpdateHealth();
         UpdateXP();
         UpdateCoins();
+        UpdateLevel();
     }
 
     private void OnDisable()
@@ -56,8 +62,14 @@ public class UIPlayerInfo : MonoBehaviour
 
         _currentXP.RemoveListener(UpdateXP);
         _nextXPThreshold.RemoveListener(UpdateXPThreshold);
+        _currentPlayerLevel.RemoveListener(UpdateLevel);
 
         _coins.RemoveListener(UpdateCoins);
+    }
+
+    private void UpdateLevel()
+    {
+        _levelText.text = _currentPlayerLevel.ToString();
     }
 
     private void UpdateHealth()

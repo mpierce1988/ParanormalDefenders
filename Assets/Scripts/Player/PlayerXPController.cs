@@ -16,19 +16,31 @@ public class PlayerXPController : MonoBehaviour
     private IntVariable _currentPlayerXP;
 
     [SerializeField]
+    private IntVariable _currentPlayerLevel;
+
+    [SerializeField]
     private IntGameEvent _onXPPickup;
 
+    private void Awake()
+    {
+        // reset current xp to zero
+        _currentPlayerXP.BaseValue = 0;
+
+        _currentPlayerLevel.BaseValue = 1;
+
+        _nextXPThreshold.BaseValue = _playerXPThresholds[0];
+    }
 
     // Start is called before the first frame update
     void Start()
     {
-        // reset current xp to zero
-        _currentPlayerXP.BaseValue = 0;
-        _currentPlayerXP.Raise();
-
         _onXPPickup.AddListener(HandleXPPickup);
-        SetNextXPThreshold();
 
+    }
+
+    private void OnDestroy()
+    {
+        _onXPPickup.RemoveListener(HandleXPPickup);
     }
 
     private void HandleXPPickup(int amount)
@@ -45,32 +57,19 @@ public class PlayerXPController : MonoBehaviour
 
     private void HandleLevelUp()
     {
+        _currentPlayerLevel.BaseValue = _currentPlayerLevel + 1;
+        _currentPlayerLevel.Raise();
         Debug.Log("Player leveled up!!!");
     }
 
     private void SetNextXPThreshold()
     {
-        int currentThresholdIndex = 0;
-
-        for (int i = 0; i < _playerXPThresholds.Count; i++)
-        {
-            if (_currentPlayerXP < _playerXPThresholds[i])
-            {
-                currentThresholdIndex = i;
-                break;
-            }
-        }
+        int currentThresholdIndex = _currentPlayerLevel - 1;
 
         if (_nextXPThreshold != _playerXPThresholds[currentThresholdIndex])
         {
             _nextXPThreshold.BaseValue = _playerXPThresholds[currentThresholdIndex];
             _nextXPThreshold.Raise();
         }
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-
     }
 }

@@ -15,6 +15,8 @@ GameObject:
   - component: {fileID: 330004907459921098}
   - component: {fileID: 2770609179235319499}
   - component: {fileID: 2612060115176785932}
+  - component: {fileID: 5671171893571513678}
+  - component: {fileID: 5570034705196590960}
   m_Layer: 6
   m_Name: PlayerInput
   m_TagString: Untagged
@@ -180,6 +182,39 @@ MonoBehaviour:
   _isDashing: {fileID: 11400000, guid: 628c25a3ca172495b80778bfb365e1f9, type: 2}
   _dashCooldown: {fileID: 11400000, guid: 1ec09d18f3482449590ec8f26ba0dca3, type: 2}
   _canDash: {fileID: 11400000, guid: cdb42463c50eb4b6b85d086955d8df31, type: 2}
+--- !u!114 &5671171893571513678
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1479879149389901642}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d7cd28c172d33406bbdd1b7562ae8828, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _playerXPThresholds: {fileID: 11400000, guid: 9ade7b7f2697b44fea60e968f45e9ce1, type: 2}
+  _nextXPThreshold: {fileID: 11400000, guid: 34f24088ce57449af9c9695fe0b5e732, type: 2}
+  _currentPlayerXP: {fileID: 11400000, guid: d9c335ff4b7da4f93a889bade6b49324, type: 2}
+  _currentPlayerLevel: {fileID: 11400000, guid: 3377ebb625cf64707a2163d35c05df2a, type: 2}
+  _onXPPickup: {fileID: 11400000, guid: 11371fafd810a44cdaff4d62e8e1ae33, type: 2}
+--- !u!114 &5570034705196590960
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1479879149389901642}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ef0f0a2d1437f4f2b887828d4a096f14, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _currentPlayerLevel: {fileID: 11400000, guid: 3377ebb625cf64707a2163d35c05df2a, type: 2}
+  _playerInventory: {fileID: 11400000, guid: 5b0e0cecedb4c44ffa8f8522efab065c, type: 2}
+  _allAvailableWeapons: {fileID: 11400000, guid: 4acfee7898bd64cb2b70c7d0f5888f5a, type: 2}
+  _playerAvailableUpgrades: {fileID: 11400000, guid: f68780c1de33f42fb930e3b8f474878d, type: 2}
 --- !u!1 &2201035432667750867
 GameObject:
   m_ObjectHideFlags: 0
