@@ -25,13 +25,22 @@ public class UIPlayerInfo : MonoBehaviour
     [SerializeField]
     private TextMeshProUGUI _coinsText;
 
+    private int _previousXPThreshold = 0;
+    private int _currentXPThreshold = 0;
+
+    private void Start()
+    {
+        _currentXPThreshold = _nextXPThreshold;
+    }
+
     private void OnEnable()
     {
         _currentHealth.AddListener(UpdateHealth);
         _maxHealth.AddListener(UpdateHealth);
 
         _currentXP.AddListener(UpdateXP);
-        _nextXPThreshold.AddListener(UpdateXP);
+        _nextXPThreshold.AddListener(UpdateXPThreshold);
+
 
         _coins.AddListener(UpdateCoins);
 
@@ -46,7 +55,7 @@ public class UIPlayerInfo : MonoBehaviour
         _maxHealth.RemoveListener(UpdateHealth);
 
         _currentXP.RemoveListener(UpdateXP);
-        _nextXPThreshold.RemoveListener(UpdateXP);
+        _nextXPThreshold.RemoveListener(UpdateXPThreshold);
 
         _coins.RemoveListener(UpdateCoins);
     }
@@ -56,9 +65,20 @@ public class UIPlayerInfo : MonoBehaviour
         _healthSlider.value = Mathf.Clamp01((float)_currentHealth.Value / (float)_maxHealth.Value);
     }
 
+    private void UpdateXPThreshold()
+    {
+        if (_currentXPThreshold != _nextXPThreshold)
+        {
+            _previousXPThreshold = _currentXPThreshold;
+            _currentXPThreshold = _nextXPThreshold;
+            UpdateXP();
+        }
+
+    }
+
     private void UpdateXP()
     {
-        _xpSlider.value = Mathf.Clamp01((float)_currentXP.Value / (float)_nextXPThreshold.Value);
+        _xpSlider.value = Mathf.Clamp01(((float)_currentXP.Value - _previousXPThreshold) / ((float)_nextXPThreshold.Value - _previousXPThreshold));
     }
 
     private void UpdateCoins()
