@@ -9,10 +9,6 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 221c62db699e545cebd628fa0ae6847c, type: 3}
-  m_Name: Player_StartingWeapon
+  m_Script: {fileID: 11500000, guid: 7a78c7052899406438e9fc79486b45c0, type: 3}
+  m_Name: DebugWeapon_Upgrade
   m_EditorClassIdentifier: 
-  _startingWeapon: {fileID: 11400000, guid: f3517958f47804af88fee7f12df53200, type: 2}
-  OnStartingWeaponChange:
-    m_PersistentCalls:
-      m_Calls: []

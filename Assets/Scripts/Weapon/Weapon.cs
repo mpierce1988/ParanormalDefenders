@@ -26,7 +26,15 @@ public class Weapon : MonoBehaviour
 
     public void SetWeaponData(WeaponDataSO weaponData)
     {
+        if (_weaponData != null)
+        {
+            _weaponData.UpgradeWeaponEvent.RemoveListener(UpgradeWeapon);
+        }
+
         _weaponData = weaponData;
+
+        _weaponData.UpgradeWeaponEvent.AddListener(UpgradeWeapon);
+
     }
 
     public void SetProjectilesParent(Transform projectilesParent)
@@ -58,6 +66,7 @@ public class Weapon : MonoBehaviour
     IEnumerator FireWeaponFixedAmount()
     {
         int totalShotsFired = 0;
+        float totalTimePassed = 0;
 
         while (totalShotsFired < _weaponData.CurrentNumProjectiles)
         {
@@ -70,6 +79,15 @@ public class Weapon : MonoBehaviour
             totalShotsFired += _weaponData.SpawnProjectiles(SpawnProjectile, this.transform, _projectilesParent);
 
             yield return new WaitForSeconds(_weaponData.CurrentTimeBetweenProjectiles);
+            totalTimePassed += _weaponData.CurrentTimeBetweenProjectiles;
+        }
+
+        // check if weapon fire time is being used. if so, we might need to wait until weapon fire
+        // time is finished
+        if (totalTimePassed < _weaponData.CurrentWeaponFireTime)
+        {
+            // wait for the remaining time
+            yield return new WaitForSeconds(_weaponData.CurrentWeaponFireTime - totalTimePassed);
         }
 
         // start cooldown
@@ -84,6 +102,14 @@ public class Weapon : MonoBehaviour
         GameObject projectile = Instantiate(_weaponData.CurrentProjectilePrefab, position, rotation, parentTransform);
         projectile.SetActive(true);
         return projectile;
+    }
+
+    private void UpgradeWeapon()
+    {
+        if (_weaponData != null)
+        {
+            _weaponData.ApplyNextUpgrade();
+        }
     }
 
     public void StartFiring()

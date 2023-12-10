@@ -12,12 +12,35 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7c3f7dd8807784e149e9f3da0decf184, type: 3}
   m_Name: Bible
   m_EditorClassIdentifier: 
-  _weaponType: 0
-  _initialNumProjectiles: 2
-  _initialTimeBetweenProjectiles: 6
-  _initialWeaponFireTime: 15
+  _weaponType: 1
+  _initialNumProjectiles: 3
+  _initialTimeBetweenProjectiles: 2
+  _initialWeaponFireTime: 30
   _initialCooldown: 5
   _initialProjectilePrefab: {fileID: 1959364997514204214, guid: b6dd24c261cf04d67bb05a0aac7daf00, type: 3}
   _initialProjectileDamage: 1
   _projectileOrigins:
   - {x: 0, y: 1}
+  _weaponUpgrades:
+  - NumProjectiles: 2
+    TimeBetweenProjectiles: 0
+    WeaponFireTime: 0
+    Cooldown: 0
+    ProjectilePrefab: {fileID: 0}
+    ProjectileDamage: 0
+    ProjectileOrigins: []
+  - NumProjectiles: 3
+    TimeBetweenProjectiles: 0
+    WeaponFireTime: 0
+    Cooldown: 0
+    ProjectilePrefab: {fileID: 0}
+    ProjectileDamage: 0
+    ProjectileOrigins: []
+  - NumProjectiles: 4
+    TimeBetweenProjectiles: 0
+    WeaponFireTime: 0
+    Cooldown: 0
+    ProjectilePrefab: {fileID: 0}
+    ProjectileDamage: 0
+    ProjectileOrigins: []
+  _upgradeWeaponEvent: {fileID: 11400000, guid: 8c461e2770c4945cea7b320f5e1358f5, type: 2}

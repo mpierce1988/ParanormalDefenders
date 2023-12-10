@@ -21,3 +21,5 @@ MonoBehaviour:
   _initialProjectileDamage: 1
   _projectileOrigins:
   - {x: 1, y: 0}
+  _weaponUpgrades: []
+  _upgradeWeaponEvent: {fileID: 11400000, guid: 3e94d41f6ddac4a049c39d53d1e11064, type: 2}

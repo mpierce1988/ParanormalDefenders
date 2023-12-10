@@ -20,6 +20,8 @@ public class WeaponManager : MonoBehaviour
         // clear anything remaining in player inventory weapons
         _playerInventory.ClearWeaponsList();
         // add starting weapon
+        // reset starting weapon first
+        _startingWeapon.StartingWeapon.ResetWeaponData();
         _playerInventory.AddWeapon(_startingWeapon.StartingWeapon);
 
         // spawn first weapon
@@ -40,6 +42,8 @@ public class WeaponManager : MonoBehaviour
             // if weapon isn't in the list of active weapons, add it
             if (!_activeWeapons.Any(aw => aw.WeaponData == wd))
             {
+                // reset weapon data first
+                wd.ResetWeaponData();
                 _weaponsToAdd.Add(wd);
             }
         }
