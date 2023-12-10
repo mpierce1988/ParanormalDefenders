@@ -12,7 +12,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 367f69c1d21604895a325ecac28a9a52, type: 3}
   m_Name: Player_AvailableUpgrades
   m_EditorClassIdentifier: 
-  _upgradeOptions: []
+  _upgradeOptions:
+  - UpgradeType: 1
+    WeaponData: {fileID: 11400000, guid: f3517958f47804af88fee7f12df53200, type: 2}
+  - UpgradeType: 0
+    WeaponData: {fileID: 11400000, guid: d2928112d07414d73a5dc9c15d8b4480, type: 2}
   OnUpgradeOptionsChange:
     m_PersistentCalls:
       m_Calls: []

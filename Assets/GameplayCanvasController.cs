@@ -11,6 +11,8 @@ public class GameplayCanvasController : MonoBehaviour
     private GameObject _gameplayPanel;
     [SerializeField]
     private GameObject _pausePanel;
+    [SerializeField]
+    private GameObject _upgradesPanel;
 
     private GameManager _gm;
 
@@ -31,13 +33,20 @@ public class GameplayCanvasController : MonoBehaviour
     {
         if (state is PlayState)
         {
-            _pausePanel.SetActive(false);
             _gameplayPanel.SetActive(true);
+            _pausePanel.SetActive(false);
+            _upgradesPanel.SetActive(false);
         }
         else if (state is PauseState)
         {
-            _gameplayPanel.SetActive(false);
             _pausePanel.SetActive(true);
+            _gameplayPanel.SetActive(false);
+            _upgradesPanel.SetActive(false);
+        }
+        else if (state is UpgradeState)
+        {
+            _upgradesPanel.SetActive(true);
+            _pausePanel.SetActive(false);
         }
     }
 

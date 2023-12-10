@@ -12,6 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fff8023f3fcd342388cfdec733e7ca1c, type: 3}
   m_Name: New WeaponData
   m_EditorClassIdentifier: 
+  _name: Straight Shooter
   _weaponType: 1
   _initialNumProjectiles: 5
   _initialTimeBetweenProjectiles: 0.25

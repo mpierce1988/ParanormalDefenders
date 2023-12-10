@@ -8,6 +8,9 @@ using UnityEngine;
 public class WeaponDataSO : ScriptableObject
 {
     [SerializeField]
+    private string _name;
+
+    [SerializeField]
     private WeaponType _weaponType;
 
     [SerializeField]
@@ -47,6 +50,7 @@ public class WeaponDataSO : ScriptableObject
     private int _currentUpgrade = -1;
 
     public WeaponType WeaponType => _weaponType;
+    public string WeaponName => _name;
     public int InitialNumProjectiles => _initialNumProjectiles;
     public float InitialTimeBetweenProjectiles => _initialTimeBetweenProjectiles;
     public float InitialWeaponFireTime => _initialWeaponFireTime;
