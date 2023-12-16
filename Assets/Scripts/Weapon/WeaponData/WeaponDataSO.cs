@@ -14,6 +14,12 @@ public class WeaponDataSO : ScriptableObject
     private WeaponType _weaponType;
 
     [SerializeField]
+    private int _defaultPoolCapacity = 20;
+
+    [SerializeField]
+    private int _maxPoolCapacity = 50;
+
+    [SerializeField]
     private int _initialNumProjectiles;
 
     [SerializeField]
@@ -24,6 +30,9 @@ public class WeaponDataSO : ScriptableObject
 
     [SerializeField]
     private float _initialCooldown;
+
+    [SerializeField]
+    private bool _initialClearProjectilesOnCooldown;
 
     [SerializeField]
     private GameObject _initialProjectilePrefab;
@@ -44,12 +53,15 @@ public class WeaponDataSO : ScriptableObject
     private float _currentTimeBetweenProjectiles;
     private float _currentWeaponFireTime;
     private float _currentCooldown;
+    private bool _currentClearProjectilesOnCooldown;
     private GameObject _currentProjectilePrefab;
     private int _currentProjectileDamage;
     private List<Vector2> _currentProjectileOrigins;
     private int _currentUpgrade = -1;
 
     public WeaponType WeaponType => _weaponType;
+    public int DefaultPoolCapacity => _defaultPoolCapacity;
+    public int MaxPoolCapacity => _maxPoolCapacity;
     public string WeaponName => _name;
     public int InitialNumProjectiles => _initialNumProjectiles;
     public float InitialTimeBetweenProjectiles => _initialTimeBetweenProjectiles;
@@ -66,6 +78,7 @@ public class WeaponDataSO : ScriptableObject
     public float CurrentCooldown => _currentCooldown;
     public GameObject CurrentProjectilePrefab => _currentProjectilePrefab;
     public int CurrentProjectileDamage => _currentProjectileDamage;
+    public bool CurrentClearProjectilesOnCooldown => _currentClearProjectilesOnCooldown;
 
     public delegate GameObject SpawnFunction(Vector2 position, Quaternion rotation, Transform parentTransform);
 
@@ -101,6 +114,7 @@ public class WeaponDataSO : ScriptableObject
         _currentProjectileDamage = _initialProjectileDamage;
         _currentProjectileOrigins = _projectileOrigins;
         _currentUpgrade = -1;
+        _currentClearProjectilesOnCooldown = _initialClearProjectilesOnCooldown;
     }
 
     virtual public int SpawnProjectiles(SpawnFunction spawnFunction, Transform spawnerTransform, Transform projectileParentTransform)

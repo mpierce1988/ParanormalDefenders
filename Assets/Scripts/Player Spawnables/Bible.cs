@@ -20,6 +20,8 @@ public class Bible : PlayerSpawnable
     protected override void Launch()
     {
         _isOrbiting = true;
+        // set random starting orbit progress
+        _orbitProgress = Random.Range(0f, 360f);
     }
 
     protected void FixedUpdate()
