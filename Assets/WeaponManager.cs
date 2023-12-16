@@ -76,6 +76,7 @@ public class WeaponManager : MonoBehaviour
         // create Weapon gameobject
         GameObject weaponGO = new GameObject();
         weaponGO.transform.parent = this.transform;
+        weaponGO.transform.localPosition = Vector3.zero;
         weaponGO.name = $"Weapon {_activeWeapons.Count + 1}";
         // create child object for projectiles
         GameObject projectilesGO = new GameObject();

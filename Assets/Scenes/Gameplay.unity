@@ -32051,7 +32051,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 1479879149389901642, guid: 03060d080caf0416abe07d862e8060d1, type: 3}
       propertyPath: m_Name
-      value: PlayerInput
+      value: Player
       objectReference: {fileID: 0}
     - target: {fileID: 5570034705196590960, guid: 03060d080caf0416abe07d862e8060d1, type: 3}
       propertyPath: _gameManager

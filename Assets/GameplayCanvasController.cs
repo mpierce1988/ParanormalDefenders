@@ -47,6 +47,9 @@ public class GameplayCanvasController : MonoBehaviour
         {
             _upgradesPanel.SetActive(true);
             _pausePanel.SetActive(false);
+
+            UIUpgradeController uiUpgradeController = _upgradesPanel.GetComponent<UIUpgradeController>();
+            uiUpgradeController.Refresh();
         }
     }
 
