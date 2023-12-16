@@ -15,6 +15,7 @@ public class GameManager : MonoBehaviour
 
     private PlayState _playState;
     private PauseState _pauseState;
+    private UpgradeState _upgradeState;
 
     public GameManagerState GameManagerState => _gameManagerState.GameManagerState;
 
@@ -29,6 +30,7 @@ public class GameManager : MonoBehaviour
     {
         _playState = new PlayState(this);
         _pauseState = new PauseState(this);
+        _upgradeState = new UpgradeState(this);
 
         // default state is play state
         ChangeState(_playState);
@@ -45,30 +47,32 @@ public class GameManager : MonoBehaviour
 
     public void ChangeToPlayState()
     {
-        if (_gameManagerState.GameManagerState != null
-            && _gameManagerState.GameManagerState == _playState)
-        {
-            // state is already play state, so do nothing
-            return;
-        }
 
         ChangeState(_playState);
     }
 
     public void ChangeToPauseState()
     {
-        if (_gameManagerState.GameManagerState != null
-            && _gameManagerState.GameManagerState == _pauseState)
-        {
-            // state is already pause state, so do nothing
-            return;
-        }
 
         ChangeState(_pauseState);
     }
 
+    public void ChangeToUpgradeState()
+    {
+        ChangeState(_upgradeState);
+    }
+
+
     private void ChangeState(GameManagerState newState)
     {
+        // check if we are already in this state
+        if (_gameManagerState.GameManagerState != null
+            && _gameManagerState.GameManagerState == newState)
+        {
+            // we are already in this state, do nothing
+            return;
+        }
+
         if (_gameManagerState.GameManagerState != null)
         {
             _gameManagerState.GameManagerState.Exit();

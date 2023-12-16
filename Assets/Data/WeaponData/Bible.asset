@@ -12,6 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7c3f7dd8807784e149e9f3da0decf184, type: 3}
   m_Name: Bible
   m_EditorClassIdentifier: 
+  _name: Bible
   _weaponType: 1
   _initialNumProjectiles: 3
   _initialTimeBetweenProjectiles: 2

@@ -17,6 +17,8 @@ public class UIPlayerInfo : MonoBehaviour
     private IntVariable _currentXP;
     [SerializeField]
     private IntVariable _nextXPThreshold;
+    [SerializeField]
+    private IntVariable _currentPlayerLevel;
 
     [SerializeField]
     private Slider _healthSlider;
@@ -24,6 +26,16 @@ public class UIPlayerInfo : MonoBehaviour
     private Slider _xpSlider;
     [SerializeField]
     private TextMeshProUGUI _coinsText;
+    [SerializeField]
+    private TextMeshProUGUI _levelText;
+
+    private int _previousXPThreshold = 0;
+    private int _currentXPThreshold = 0;
+
+    private void Start()
+    {
+        _currentXPThreshold = _nextXPThreshold;
+    }
 
     private void OnEnable()
     {
@@ -31,13 +43,16 @@ public class UIPlayerInfo : MonoBehaviour
         _maxHealth.AddListener(UpdateHealth);
 
         _currentXP.AddListener(UpdateXP);
-        _nextXPThreshold.AddListener(UpdateXP);
+        _nextXPThreshold.AddListener(UpdateXPThreshold);
+        _currentPlayerLevel.AddListener(UpdateLevel);
+
 
         _coins.AddListener(UpdateCoins);
 
         UpdateHealth();
         UpdateXP();
         UpdateCoins();
+        UpdateLevel();
     }
 
     private void OnDisable()
@@ -46,9 +61,15 @@ public class UIPlayerInfo : MonoBehaviour
         _maxHealth.RemoveListener(UpdateHealth);
 
         _currentXP.RemoveListener(UpdateXP);
-        _nextXPThreshold.RemoveListener(UpdateXP);
+        _nextXPThreshold.RemoveListener(UpdateXPThreshold);
+        _currentPlayerLevel.RemoveListener(UpdateLevel);
 
         _coins.RemoveListener(UpdateCoins);
+    }
+
+    private void UpdateLevel()
+    {
+        _levelText.text = _currentPlayerLevel.ToString();
     }
 
     private void UpdateHealth()
@@ -56,9 +77,20 @@ public class UIPlayerInfo : MonoBehaviour
         _healthSlider.value = Mathf.Clamp01((float)_currentHealth.Value / (float)_maxHealth.Value);
     }
 
+    private void UpdateXPThreshold()
+    {
+        if (_currentXPThreshold != _nextXPThreshold)
+        {
+            _previousXPThreshold = _currentXPThreshold;
+            _currentXPThreshold = _nextXPThreshold;
+            UpdateXP();
+        }
+
+    }
+
     private void UpdateXP()
     {
-        _xpSlider.value = Mathf.Clamp01((float)_currentXP.Value / (float)_nextXPThreshold.Value);
+        _xpSlider.value = Mathf.Clamp01(((float)_currentXP.Value - _previousXPThreshold) / ((float)_nextXPThreshold.Value - _previousXPThreshold));
     }
 
     private void UpdateCoins()

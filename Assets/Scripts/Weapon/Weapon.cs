@@ -16,13 +16,6 @@ public class Weapon : MonoBehaviour
 
     private bool _isFiring = false;
 
-    private void OnEnable()
-    {
-        // Initialize initial WeaponData values
-        _weaponData.ResetWeaponData();
-        // DEBUG remove later
-        //StartFiring();
-    }
 
     public void SetWeaponData(WeaponDataSO weaponData)
     {
@@ -32,6 +25,8 @@ public class Weapon : MonoBehaviour
         }
 
         _weaponData = weaponData;
+
+        _weaponData.ResetWeaponData();
 
         _weaponData.UpgradeWeaponEvent.AddListener(UpgradeWeapon);
 
