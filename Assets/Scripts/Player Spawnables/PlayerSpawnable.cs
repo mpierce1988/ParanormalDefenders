@@ -15,10 +15,12 @@ public class PlayerSpawnable : MonoBehaviour
     protected float _destroyAfterSeconds = -1f;
 
     protected Rigidbody2D _rigidbody2D;
+    protected IPoolable _poolable;
 
     protected virtual void Awake()
     {
         _rigidbody2D = GetComponent<Rigidbody2D>();
+        _poolable = GetComponent<IPoolable>();
     }
 
     protected virtual void OnEnable()
@@ -64,6 +66,13 @@ public class PlayerSpawnable : MonoBehaviour
     public virtual void DestroySpawnable()
     {
         Debug.Log("Destroying spawnable");
-        Destroy(this.gameObject);
+        if (_poolable != null)
+        {
+            _poolable.ReturnToPool();
+        }
+        else
+        {
+            Destroy(this.gameObject);
+        }
     }
 }

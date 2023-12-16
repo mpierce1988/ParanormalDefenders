@@ -78,14 +78,26 @@ public class WeaponManager : MonoBehaviour
         weaponGO.transform.parent = this.transform;
         weaponGO.transform.localPosition = Vector3.zero;
         weaponGO.name = $"Weapon {_activeWeapons.Count + 1}";
-        // create child object for projectiles
+        // create child object for active projectiles
         GameObject projectilesGO = new GameObject();
         projectilesGO.transform.parent = weaponGO.transform;
-        projectilesGO.name = "Projectiles";
+        projectilesGO.name = "Active Projectiles";
+        // create child object for active projectiles
+        GameObject inactiveGO = new GameObject();
+        inactiveGO.transform.parent = weaponGO.transform;
+        inactiveGO.name = "Inactive Projectiles";
+        // add object pooler to weapon for projectiles
+        ObjectPooler objectPooler = weaponGO.AddComponent<ObjectPooler>();
+        objectPooler.Initialize(weaponDataSO.CurrentProjectilePrefab,
+            weaponDataSO.DefaultPoolCapacity,
+            weaponDataSO.MaxPoolCapacity, projectilesGO.transform,
+            inactiveGO.transform);
+
         // add Weapon component
         Weapon weapon = weaponGO.AddComponent<Weapon>();
         weapon.SetWeaponData(weaponDataSO);
         weapon.SetProjectilesParent(projectilesGO.transform);
+        weapon.SetObjectPool(objectPooler);
         // add weapon to list of active weapons
         _activeWeapons.Add(weapon);
         // start weapon

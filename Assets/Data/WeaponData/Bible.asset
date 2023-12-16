@@ -14,10 +14,13 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _name: Bible
   _weaponType: 1
+  _defaultPoolCapacity: 20
+  _maxPoolCapacity: 50
   _initialNumProjectiles: 3
-  _initialTimeBetweenProjectiles: 2
-  _initialWeaponFireTime: 30
+  _initialTimeBetweenProjectiles: 2.3575
+  _initialWeaponFireTime: 10
   _initialCooldown: 5
+  _initialClearProjectilesOnCooldown: 1
   _initialProjectilePrefab: {fileID: 1959364997514204214, guid: b6dd24c261cf04d67bb05a0aac7daf00, type: 3}
   _initialProjectileDamage: 1
   _projectileOrigins:

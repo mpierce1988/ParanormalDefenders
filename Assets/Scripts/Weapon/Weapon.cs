@@ -12,9 +12,16 @@ public class Weapon : MonoBehaviour
     [SerializeField]
     private Transform _projectilesParent;
 
+
     public WeaponDataSO WeaponData => _weaponData;
 
     private bool _isFiring = false;
+    private ObjectPooler _projectilePool;
+
+    public void SetObjectPool(ObjectPooler projectilePool)
+    {
+        _projectilePool = projectilePool;
+    }
 
 
     public void SetWeaponData(WeaponDataSO weaponData)
@@ -39,7 +46,16 @@ public class Weapon : MonoBehaviour
 
     IEnumerator FireWeaponFixedTime()
     {
-        float timeBetweenShots = _weaponData.CurrentWeaponFireTime / _weaponData.CurrentNumProjectiles;
+        float timeBetweenShots = 0f;
+
+        if (_weaponData.CurrentTimeBetweenProjectiles > 0)
+        {
+            timeBetweenShots = _weaponData.CurrentTimeBetweenProjectiles;
+        }
+        else
+        {
+            timeBetweenShots = _weaponData.CurrentWeaponFireTime / _weaponData.CurrentNumProjectiles;
+        }
 
         float timeProgress = 0f;
 
@@ -94,9 +110,21 @@ public class Weapon : MonoBehaviour
 
     private GameObject SpawnProjectile(Vector2 position, Quaternion rotation, Transform parentTransform)
     {
-        GameObject projectile = Instantiate(_weaponData.CurrentProjectilePrefab, position, rotation, parentTransform);
-        projectile.SetActive(true);
-        return projectile;
+        if (_projectilePool == null)
+        {
+            // no pool, instantiate a new gameobject
+            GameObject projectile = Instantiate(_weaponData.CurrentProjectilePrefab, position, rotation, parentTransform);
+            projectile.SetActive(true);
+            return projectile;
+        }
+        var result = _projectilePool.GetItem();
+        result.SetActive(false);
+        result.transform.position = position;
+        result.transform.rotation = rotation;
+        result.transform.parent = parentTransform;
+        result.SetActive(true);
+        return result;
+
     }
 
     private void UpgradeWeapon()
@@ -129,7 +157,7 @@ public class Weapon : MonoBehaviour
 
     IEnumerator Cooldown()
     {
-        if (_weaponData.WeaponType == WeaponType.FixedTime)
+        if (_weaponData.CurrentClearProjectilesOnCooldown)
         {
             // destroy any projectiles already created
             foreach (var spawnable in _projectilesParent.GetComponentsInChildren<PlayerSpawnable>())
