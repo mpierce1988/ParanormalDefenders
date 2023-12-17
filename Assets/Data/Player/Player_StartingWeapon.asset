@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 221c62db699e545cebd628fa0ae6847c, type: 3}
   m_Name: Player_StartingWeapon
   m_EditorClassIdentifier: 
-  _startingWeapon: {fileID: 11400000, guid: f3517958f47804af88fee7f12df53200, type: 2}
+  _startingWeapon: {fileID: 11400000, guid: d2928112d07414d73a5dc9c15d8b4480, type: 2}
   OnStartingWeaponChange:
     m_PersistentCalls:
       m_Calls: []

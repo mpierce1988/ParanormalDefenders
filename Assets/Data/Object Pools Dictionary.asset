@@ -9,9 +9,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: bc452861f37314ff4b85cefd500cdeaa, type: 3}
-  m_Name: Enemy Chase State
+  m_Script: {fileID: 11500000, guid: bef394a753be54e67a464937396a3cda, type: 3}
+  m_Name: Object Pools Dictionary
   m_EditorClassIdentifier: 
-  _targetPosition: {fileID: 11400000, guid: 102cca355a87347acaf8d443f1f75282, type: 2}
-  _stoppingDistance: 5
-  _onStopSwitchToState: Attack
+  _objectPools: []

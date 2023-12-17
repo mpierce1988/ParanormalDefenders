@@ -3,6 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.AI;
+using UnityEngine.Events;
 
 [RequireComponent(typeof(NavMeshAgent))]
 public class Enemy : MonoBehaviour
@@ -12,6 +13,8 @@ public class Enemy : MonoBehaviour
     [SerializeField]
     private float _ticksPerSecond = 2f;
 
+    public UnityEvent<bool> OnAttackChange;
+
     public NavMeshAgent NavMeshAgent => _navMeshAgent;
 
     private NavMeshAgent _navMeshAgent;
@@ -19,6 +22,8 @@ public class Enemy : MonoBehaviour
     private EnemyStateSO _currentState;
     private float _timeBetweenTicks;
     private bool _isActive;
+
+    private Coroutine _tickCoroutine;
 
     private void Awake()
     {
@@ -29,7 +34,23 @@ public class Enemy : MonoBehaviour
     }
 
     // Start is called before the first frame update
-    void Start()
+    void OnEnable()
+    {
+        Initialize();
+    }
+
+    private void OnDisable()
+    {
+        _isActive = false;
+        StopAllCoroutines();
+    }
+
+    private void OnDestroy()
+    {
+        StopAllCoroutines();
+    }
+
+    private void Initialize()
     {
         string startState = "";
         // reset and initialize each state
@@ -42,6 +63,7 @@ public class Enemy : MonoBehaviour
                 startState = esd.Name;
             }
 
+
             _enemyStateDictionary.Add(esd.Name, esd.EnemyStateSO);
         }
 
@@ -50,14 +72,13 @@ public class Enemy : MonoBehaviour
         // start ticks
         _timeBetweenTicks = 1f / _ticksPerSecond;
         StartTicking();
-
-
+        _isActive = true;
     }
 
     private void StartTicking()
     {
         _isActive = true;
-        StartCoroutine(TickingCoroutine());
+        _tickCoroutine = StartCoroutine(TickingCoroutine());
     }
 
     private IEnumerator TickingCoroutine()
@@ -67,19 +88,19 @@ public class Enemy : MonoBehaviour
             yield return new WaitForSeconds(_timeBetweenTicks);
             if (_currentState != null)
             {
-                StartCoroutine(_currentState.Tick());
+                StartCoroutine(_currentState.Tick(this));
             }
         }
     }
 
     internal void StartAttack()
     {
-        Debug.Log("Starting attack...");
+        OnAttackChange.Invoke(true);
     }
 
     internal void StopAttack()
     {
-        Debug.Log("Ending attack...");
+        OnAttackChange.Invoke(false);
     }
 
     internal void SwitchToState(string onCompleteSwitchToState)
@@ -92,12 +113,12 @@ public class Enemy : MonoBehaviour
 
         if (_currentState != null)
         {
-            StartCoroutine(_currentState.Exit());
+            StartCoroutine(_currentState.Exit(this));
         }
 
         _currentState = nextState;
 
-        StartCoroutine(_currentState.Enter());
+        StartCoroutine(_currentState.Enter(this));
     }
 }
 

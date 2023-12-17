@@ -12,20 +12,20 @@ public class MainMenuUICanvasController : MonoBehaviour
 
     private void Start()
     {
-        _startPanel.active = true;
-        _selectLevelPanel.active = false;
+        _startPanel.SetActive(true);
+        _selectLevelPanel.SetActive(false);
     }
 
     public void OnPlayPressed()
     {
-        _startPanel.active = false;
-        _selectLevelPanel.active = true;
+        _startPanel.SetActive(false);
+        _selectLevelPanel.SetActive(true);
     }
 
     public void OnBackToStartPressed()
     {
-        _startPanel.active = true;
-        _selectLevelPanel.active = false;
+        _startPanel.SetActive(true);
+        _selectLevelPanel.SetActive(false);
     }
 
     public void OnQuitPressed()

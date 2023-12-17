@@ -11,17 +11,17 @@ public class EnemyStateSO : ScriptableObject
         _enemy = enemy;
     }
 
-    public virtual IEnumerator Enter()
+    public virtual IEnumerator Enter(Enemy enemy)
     {
         yield return null;
     }
 
-    public virtual IEnumerator Tick()
+    public virtual IEnumerator Tick(Enemy enemy)
     {
         yield return null;
     }
 
-    public virtual IEnumerator Exit()
+    public virtual IEnumerator Exit(Enemy enemy)
     {
         yield return null;
     }
@@ -29,5 +29,12 @@ public class EnemyStateSO : ScriptableObject
     public virtual void Reset()
     {
         _enemy = null;
+    }
+
+    public EnemyStateSO() { }
+
+    public EnemyStateSO(EnemyStateSO enemyStateSO)
+    {
+        _enemy = enemyStateSO._enemy;
     }
 }

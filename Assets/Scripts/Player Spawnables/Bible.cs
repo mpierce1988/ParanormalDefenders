@@ -50,4 +50,14 @@ public class Bible : PlayerSpawnable
         _rigidbody2D.MoveRotation(smoothedAngle);
 
     }
+
+    protected override void OnCollisionEnter2D(Collision2D collision)
+    {
+        ITakeDamage _takeDamage = collision.gameObject.GetComponent<ITakeDamage>();
+
+        if (_takeDamage != null)
+        {
+            _takeDamage.TakeDamage(_damage);
+        }
+    }
 }

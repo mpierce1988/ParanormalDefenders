@@ -13,13 +13,13 @@ public class EnemyAttackStateSO : EnemyStateSO
     [SerializeField]
     private string _onCompleteSwitchToState = "Chase";
 
-    public override IEnumerator Enter()
+    public override IEnumerator Enter(Enemy enemy)
     {
-        yield return new WaitForSeconds(_timeAfterAttackDelay);
-        _enemy.StartAttack();
+        yield return new WaitForSeconds(_timeBeforeAttackDelay);
+        enemy.StartAttack();
         yield return new WaitForSeconds(_attackDuration);
-        _enemy.StopAttack();
+        enemy.StopAttack();
         yield return new WaitForSeconds(_timeAfterAttackDelay);
-        _enemy.SwitchToState(_onCompleteSwitchToState);
+        enemy.SwitchToState(_onCompleteSwitchToState);
     }
 }

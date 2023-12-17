@@ -14,32 +14,36 @@ public class EnemyChaseStateSO : EnemyStateSO
     [SerializeField]
     private string _onStopSwitchToState = "Attack";
 
-    public override IEnumerator Enter()
+    public override IEnumerator Enter(Enemy enemy)
     {
-        _enemy.NavMeshAgent.isStopped = false;
-        _enemy.NavMeshAgent.SetDestination(new Vector3(_targetPosition.Value.x, _targetPosition.Value.y, 0));
+        enemy.NavMeshAgent.isStopped = false;
+        enemy.NavMeshAgent.SetDestination(new Vector3(_targetPosition.Value.x, _targetPosition.Value.y, 0));
 
         yield return null;
     }
 
-    public override IEnumerator Tick()
+    public override IEnumerator Tick(Enemy enemy)
     {
-        if (((Vector3)_targetPosition.Value - _enemy.gameObject.transform.position).magnitude < _stoppingDistance)
+        if (enemy != null)
         {
-            // switch to new state
-            _enemy.SwitchToState(_onStopSwitchToState);
-        }
-        else
-        {
-            _enemy.NavMeshAgent.SetDestination((Vector3)_targetPosition.Value);
+            if (((Vector3)_targetPosition.Value - enemy.gameObject.transform.position).magnitude < _stoppingDistance)
+            {
+                // switch to new state
+                enemy.SwitchToState(_onStopSwitchToState);
+            }
+            else
+            {
+                enemy.NavMeshAgent.SetDestination((Vector3)_targetPosition.Value);
+            }
+
+            yield return null;
         }
 
-        yield return null;
     }
 
-    public override IEnumerator Exit()
+    public override IEnumerator Exit(Enemy enemy)
     {
-        _enemy.NavMeshAgent.isStopped = true;
+        enemy.NavMeshAgent.isStopped = true;
 
         yield return null;
     }

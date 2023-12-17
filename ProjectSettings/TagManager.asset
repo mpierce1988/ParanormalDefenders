@@ -14,9 +14,9 @@ TagManager:
   - Player
   - Player Projectile
   - Level Obstacles
-  - 
-  - 
-  - 
+  - Enemy
+  - Enemy Projectile
+  - Pickup
   - 
   - 
   - 

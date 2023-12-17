@@ -100,6 +100,7 @@ GameObject:
   - component: {fileID: 2612060115176785932}
   - component: {fileID: 5671171893571513678}
   - component: {fileID: 5570034705196590960}
+  - component: {fileID: 5266035529879940288}
   m_Layer: 6
   m_Name: Player
   m_TagString: Untagged
@@ -299,7 +300,22 @@ MonoBehaviour:
   _playerInventory: {fileID: 11400000, guid: 5b0e0cecedb4c44ffa8f8522efab065c, type: 2}
   _allAvailableWeapons: {fileID: 11400000, guid: 4acfee7898bd64cb2b70c7d0f5888f5a, type: 2}
   _playerAvailableUpgrades: {fileID: 11400000, guid: f68780c1de33f42fb930e3b8f474878d, type: 2}
-  _gameManager: {fileID: 0}
+  _gameManager: {fileID: 11400000, guid: 942f439ecaf30414a990c660f82d31fa, type: 2}
+--- !u!114 &5266035529879940288
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1479879149389901642}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b4c00e73b86954d9491ac8d92b283171, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _playerHealth: {fileID: 11400000, guid: a398e02064174487a80f486550d1fea5, type: 2}
+  _maxPlayerHealth: {fileID: 11400000, guid: 0640c8179fff04e6e912b5527d945953, type: 2}
+  _onPlayerDied: {fileID: 11400000, guid: 120c3b51609414b279091cb36e7affb9, type: 2}
 --- !u!1 &2201035432667750867
 GameObject:
   m_ObjectHideFlags: 0
@@ -450,7 +466,7 @@ SpriteRenderer:
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 1785944419
-  m_SortingLayer: 3
+  m_SortingLayer: 4
   m_SortingOrder: 1
   m_Sprite: {fileID: 7482667652216324306, guid: 75f5f34dc1b5347e0b8351032682f224, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}

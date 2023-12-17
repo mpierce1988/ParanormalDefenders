@@ -12,7 +12,8 @@ GameObject:
   - component: {fileID: 2380418054768441237}
   - component: {fileID: 3021000531992897959}
   - component: {fileID: 2653119037607453586}
-  m_Layer: 0
+  - component: {fileID: 2964384971873762750}
+  m_Layer: 11
   m_Name: XP Gem
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -111,6 +112,18 @@ Rigidbody2D:
   m_SleepingMode: 1
   m_CollisionDetection: 0
   m_Constraints: 0
+--- !u!114 &2964384971873762750
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2317696824315711209}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5559128253b594f1780b16a75b1e59ac, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &3589737116397018579
 GameObject:
   m_ObjectHideFlags: 0
@@ -120,7 +133,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1674892910363432875}
-  m_Layer: 0
+  m_Layer: 11
   m_Name: Sprite
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -153,7 +166,7 @@ GameObject:
   m_Component:
   - component: {fileID: 6035660513808632222}
   - component: {fileID: 527456588394896603}
-  m_Layer: 0
+  m_Layer: 11
   m_Name: Isometric Diamond
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -214,7 +227,7 @@ SpriteRenderer:
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 1785944419
-  m_SortingLayer: 3
+  m_SortingLayer: 4
   m_SortingOrder: 0
   m_Sprite: {fileID: 3625043607559282579, guid: 19fb86013d8c24d6cb8410c0aadf30fa, type: 3}
   m_Color: {r: 0.14810991, g: 0.9339623, b: 0.09251513, a: 1}
